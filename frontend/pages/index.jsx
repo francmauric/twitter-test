@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import TweetForm from "@/components/TweetForm";
 import TweetList from "@/components/TweetList";
 import Nav from "@/components/Nav";
+import SearchButton from "@/components/SearchButton";
 import axios from "axios";
 
 
@@ -39,7 +40,9 @@ export default function Home() {
         <button className="border border-gray-300 w-full text-center py-2 text-base hover:bg-gray-400 text-gray-300">Show 787 Post</button>
         <TweetList tweets={tweets} onLike={handleLike} onDelete={handleDelete} />
       </div>
-      <div className="w-1/3">BUSQUEDA</div>
+      <div className="w-1/3">
+        <SearchButton/>
+      </div>
     </div> 
   );
 }
