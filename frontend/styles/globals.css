@@ -1,0 +1,36 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+.bg-radial{
+    background-image: radial-gradient(circle, #a7a7a7, #585757);
+}
+
+.heart-button {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 3rem;
+    height: 3rem;
+    background-color: transparent;
+    border: 2px solid transparent;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .heart-button::before {
+    content: "";
+    position: absolute;
+    width: 2rem;
+    height: 2rem;
+    background-color: red;
+    clip-path: polygon(50% 0%, 100% 30%, 100% 70%, 50% 100%, 0% 70%, 0% 30%);
+    transition: background-color 0.3s ease;
+  }
+  
+  .heart-button:hover::before {
+    background-color: darkred;
+  }
+  
