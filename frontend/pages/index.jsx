@@ -5,26 +5,33 @@ import Nav from "@/components/Nav";
 import SearchButton from "@/components/SearchButton";
 import axios from "axios";
 
-
+ 
 export default function Home() {
   const [tweets, setTweets] = useState([])
-
+  
   useEffect(() => {
     const buscarTweets = async () => {
-      const response = await axios.get('http://localhost:3001/api/tweets')
-      setTweets(response.data);
-    };
-    buscarTweets();
+    try {
+        const response = await axios.get('http://localhost:3001/api/tweets')
+        setTweets(response.data);
+        console.log(response.data)   
+      } catch (error) {
+        console.error ('Hubo un problema al cargar los tweet. Intente mas tarde')
+      }
+      }; 
+      buscarTweets();
   },[])
 
+  //agregar post
   const handleTweetPosted = (newTweet) => {
     setTweets((prevTweets) =>[newTweet, ...prevTweets])
   };
-
+  //agregar like
   const handleLike = (likedTweet) => {
+    //console.log(likedTweet)
     setTweets((prevTweets) => prevTweets.map(tweet => tweet.id === likedTweet.id ? likedTweet : tweet ))
   }
-
+  //eliminar post
   const handleDelete = (delTweetId) => {
     console.log(delTweetId)
     setTweets((prevTweets) => prevTweets.filter(tweet => tweet.id !== delTweetId))

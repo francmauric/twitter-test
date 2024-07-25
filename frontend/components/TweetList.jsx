@@ -3,14 +3,17 @@ import axios from "axios";
 
 function TweetList ({ tweets, onLike, onDelete}) {
     
-    
-    const handleLike = async (id) => {
-        
-        const response = await axios.post(`http://localhost:3001/api/tweets/${id}/like`)
-        onLike(response.data)
-       
+     //aumentar like
+    const handleLike = async (id) => { 
+       try{
+           const response = await axios.post(`http://localhost:3001/api/tweets/${id}/like`)
+           onLike(response.data)
+       } catch (error) {
+            console.error('fallo en la llamada')
+       }
     }
 
+    //eliminar
     const handleDelete = async (id) => {
        try{
         await axios.delete(`http://localhost:3001/api/tweets/${id}`)

@@ -26,7 +26,7 @@ app.post('/api/tweets', (req, res) => {
     };
     tweets.push(newTweet);
     res.status(201).json(newTweet);
-});
+}); 
 
 //agregar likes
 app.post('/api/tweets/:id/like', (req,res) => {

@@ -1,17 +1,22 @@
 import { useState } from "react";
 import axios from "axios";
 
-
+ 
 function TweetForm ({onTweetPosted}) {
     const [ username,setUsername ] = useState('');
     const [ content, setContent ] = useState('');
     
+    //mandar datos
     const handleSubmit = async (e) => {
-        e.preventDefault()
-        const response = await axios.post('http://localhost:3001/api/tweets', { username, content});
-        onTweetPosted(response.data);
-        setUsername('');
-        setContent('')
+      try{
+          e.preventDefault()
+          const response = await axios.post('http://localhost:3001/api/tweets', { username, content});
+          onTweetPosted(response.data);
+          setUsername('');
+          setContent('')
+      } catch (error) {
+        console.error ('error')
+      } 
     };
 
     return (
